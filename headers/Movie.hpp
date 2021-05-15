@@ -11,7 +11,7 @@ class Movie{
         unsigned int rating;
         unsigned int watched_count;
     public:
-        Movie(std::string n, std::string g, unsigned int r = 0, unsigned w = 0);
+        Movie(std::string n, std::string g = "none", unsigned int r = 0, unsigned w = 0);
         //Movie(const Movie& source);
         //Movie(Movie&& source);
         //~Movie();

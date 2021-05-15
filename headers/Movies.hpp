@@ -26,6 +26,7 @@ class Movies {
         bool add_movie(const std::string& name,const std::string& genre, const unsigned int& rating,const unsigned int& watched_count);
         bool add_movie(std::string& name, std::string& genre, unsigned int& rating);
         bool add_movie(std::string& name, std::string& genre);
+        bool add_movie(std::string& name);
 
         std::vector<Movie*>* get_movies();
         

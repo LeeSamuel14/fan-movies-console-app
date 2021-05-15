@@ -1,8 +1,23 @@
 #include <iostream>
 #include <string>
+#include <fstream>
 #include "Movies.hpp"
 
 Movies* Movies::instance = nullptr;
+
+void create_movies_from_file(){
+    std::string line;
+    std::ifstream my_file ("movie_names.txt");
+    if(my_file.is_open()){
+        while(std::getline(my_file, line)){
+            Movies* movies = Movies::get_movies_instance();
+            movies->add_movie(line);
+        }
+    }
+    else{
+        std::cout << "cannot open file" << std::endl;
+    }
+}
 
 void debug_create_movies(){
     Movies* movies = Movies::get_movies_instance();
@@ -35,10 +50,11 @@ void pause_execution(){
 }
 
 int main(){
+    create_movies_from_file();
     Movies* movies = Movies::get_movies_instance();
-    std::string search_string = "n";
+    std::string search_string = "man";
     movies->search_movie(search_string);
-    movies->display_all_movies();
+    //movies->display_all_movies();
     pause_execution();
     return 0;
 }

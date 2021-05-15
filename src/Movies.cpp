@@ -76,6 +76,12 @@ bool Movies::add_movie(std::string& name, std::string& genre){
     return true;
 }
 
+bool Movies::add_movie(std::string& name){
+    Movie* movie = new Movie{name};
+    movies->push_back(movie);
+    return true;
+}
+
 bool Movies::compute_search(std::string& search_string){
     std::vector<Movie*>::iterator movie_iterator { movies->begin() };
     
