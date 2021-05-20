@@ -15,6 +15,7 @@ class Movies {
         void display_movie(Movie* movie);
         void display_movies_from_search();
         bool compute_search(std::string& search_string);
+        std::vector<Movie*>::iterator getIndex(std::string movie_name);
         //enum search_type {type_name, type_genre, type_rating, type_watched_count};
     public:
         ~Movies();
@@ -31,8 +32,9 @@ class Movies {
         std::vector<Movie*>* get_movies();
         
 
-        bool update_rating(std::string& movie_name, unsigned int count);
-        bool update_watched(std::string& movie_name, unsigned int count);
+        bool update_genre(std::string& movie_name, std::string& genre);
+        bool update_rating(std::string& movie_name, unsigned int& count);
+        bool update_watched(std::string& movie_name, unsigned int& count);
 
         bool delete_movie(std::string& movie_name);
 };

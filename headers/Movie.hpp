@@ -19,6 +19,7 @@ class Movie{
         std::string get_genre();
         unsigned int get_rating();
         unsigned int get_watched_count();
+        bool set_genre(std::string g);
         bool set_rating(unsigned int r);
         bool set_watched_count(unsigned int w);
 };

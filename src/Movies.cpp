@@ -82,6 +82,8 @@ bool Movies::add_movie(std::string& name){
     return true;
 }
 
+//pass it a vector<Movies*> return something think of a solution with delete
+
 bool Movies::compute_search(std::string& search_string){
     std::vector<Movie*>::iterator movie_iterator { movies->begin() };
     
@@ -110,4 +112,80 @@ bool Movies::compute_search(std::string& search_string){
     }
 
    return ( temp_movies->size() > 0 );
+}
+
+bool Movies::update_genre(std::string& movie_name, std::string& genre){
+    bool found = compute_search(movie_name);
+    if(found){
+        temp_movies->at(0)->set_genre(genre);
+        temp_movies->clear();
+        return true;
+    }
+    return false;
+}
+
+bool Movies::update_rating(std::string& movie_name, unsigned int& count){
+    bool found = compute_search(movie_name);
+    if(found){
+        temp_movies->at(0)->set_rating(count);
+        temp_movies->clear();
+        return true;
+    }
+    return false;
+}
+
+bool Movies::update_watched(std::string& movie_name, unsigned int& count){
+    bool found = compute_search(movie_name);
+    if(found){
+        temp_movies->at(0)->set_watched_count(count);
+        temp_movies->clear();
+        return true;
+    }
+    return false;
+}
+
+//WIP
+bool Movies::delete_movie(std::string& movie_name_params){
+    //bool found = compute_search(movie_name_params);
+    if(true){
+        std::vector<Movie*>::iterator it = std::find_if(movies->begin(), movies->end(), [&](Movie* movie) {
+
+            std::string movie_name = movie->get_name();
+
+            std::for_each(movie_name.begin(), movie_name.end(), [](char & s) {
+                s = ::tolower(s);
+            });
+            std::for_each(movie_name_params.begin(), movie_name_params.end(), [](char & s) {
+                s = ::tolower(s);
+            });
+
+            if (movie_name.find(movie_name_params) != std::string::npos) {
+                //try set flg here if you can
+                return true;
+            }
+            else{
+                return false;
+            }
+
+        } );
+        if (it != temp_movies->end()){
+            delete *it;
+            movies->erase(it);
+            return true;
+            } 
+    }
+    
+    return false;
+    /* bool found = compute_search(movie_name);
+    if(found){
+        if(temp_movies->size() > 0){
+            movies->erase(getIndex(movie_name));
+            delete temp_movies->at(0);
+            temp_movies->clear();
+        }
+        
+        temp_movies->clear();
+        return true;
+    }
+    return false; */
 }

@@ -7,9 +7,9 @@ Movies* Movies::instance = nullptr;
 
 void create_movies_from_file(){
     std::string line;
-    std::ifstream my_file ("movie_names.txt");
-    if(my_file.is_open()){
-        while(std::getline(my_file, line)){
+    std::ifstream movie_names_file ("movie_names.txt");
+    if(movie_names_file.is_open()){
+        while(std::getline(movie_names_file, line)){
             Movies* movies = Movies::get_movies_instance();
             movies->add_movie(line);
         }
@@ -52,9 +52,26 @@ void pause_execution(){
 int main(){
     create_movies_from_file();
     Movies* movies = Movies::get_movies_instance();
-    std::string search_string = "man";
-    movies->search_movie(search_string);
-    //movies->display_all_movies();
-    pause_execution();
+    std::string name {"The Dark Knight (2008)"};
+    std::string name1 {"da"};
+    std::string genre {"Action"};
+    unsigned int rating { 10 };
+    unsigned int watched_count { 100 };
+    //movies->search_movie(name1);
+    movies->update_genre(name, genre);
+    movies->update_rating(name, rating);
+    movies->update_watched(name, watched_count);
+    //movies->search_movie(name);
+    std::string user_input {"dark"};
+    movies->search_movie(user_input);
+    /* do{
+        std::cout << "Enter search word: " ;
+        std::cin >> user_input;
+        movies->search_movie(user_input);
+    } while (user_input != "q"); */
+    //pause_execution();
+    std::string dark_knight {"The Dark Knight (2008)"};
+    movies->delete_movie(dark_knight);
+    movies->search_movie(user_input);
     return 0;
 }

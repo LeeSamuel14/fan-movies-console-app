@@ -34,6 +34,11 @@ unsigned int Movie::get_watched_count(){
     return watched_count;
 }
 
+bool Movie::set_genre(std::string g){
+    genre = g;
+    return true;
+}
+
 bool Movie::set_rating(unsigned int r){
     rating = r;
     return true;
